@@ -3,12 +3,16 @@
           2) Add <script src="auth.js"></script> before </body> in index.html.
 */
 (function () {
-  const firebaseConfig = {
-    apiKey: "PASTE_HERE",
-    authDomain: "PASTE_HERE",
-    projectId: "PASTE_HERE",
-    appId: "PASTE_HERE"
-  };
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const firebaseConfig = {
+  apiKey: "AIzaSyAt1u8Xt3PCg_pOhiAd4PwL_-FCN5Mf9FI",
+  authDomain: "jkr-ai.firebaseapp.com",
+  projectId: "jkr-ai",
+  storageBucket: "jkr-ai.firebasestorage.app",
+  messagingSenderId: "769372108757",
+  appId: "1:769372108757:web:292b9082552a474a30af5c",
+  measurementId: "G-7BHRV2ZDJH"
+};
 
   const V = "10.12.2";
   const base = "https://www.gstatic.com/firebasejs/" + V + "/";
