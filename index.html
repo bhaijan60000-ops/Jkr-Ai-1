@@ -133,33 +133,42 @@ function renderLibrary(){let el=$('libraryList');el.innerHTML='';if(!library.len
 $('clearHistory').onclick=()=>{if(confirm('Delete all chat history?')){chats=[];save();renderHistory()}};
 if('serviceWorker' in navigator)navigator.serviceWorker.register('./sw.js').catch(()=>{});renderHistory();renderProjects();renderLibrary();$('accountMenuBtn').textContent=(profile.name||'JK').slice(0,2).toUpperCase();
 if(pin){modal(`<h3>🔐 JKR AI is PIN protected</h3><p class="muted">Enter your PIN to continue on this browser.</p><input class="field" id="unlockPin" type="password" inputmode="numeric" placeholder="Enter PIN"><button class="primary" id="unlockBtn" style="width:100%">Unlock</button>`);$('unlockBtn').onclick=()=>{if($('unlockPin').value===pin)closeModal();else alert('Incorrect PIN')}}
-<script type="module">
-  import { initializeApp } from "https://gstatic.com";
-  import { getFirestore, doc, setDoc } from "https://gstatic.com";
+<!-- Firebase Standard Compatibility Libraries -->
+<script src="https://gstatic.com"></script>
+<script src="https://gstatic.com"></script>
 
-  // Yahan apna copy kiya hua Firebase config data dalein
+<script>
+  // Jkr-Ai Real Firebase Config Data from google-services.json
   const firebaseConfig = {
-    apiKey: "YOUR_API_KEY",
+    apiKey: "AIzaSyCnF_GpDJyVIsXKuFUD6FcZQym8gT-XGAQ", 
     authDomain: "://firebaseapp.com",
     projectId: "jkr-ai",
     storageBucket: "://appspot.com",
-    messagingSenderId: "YOUR_SENDER_ID",
-    appId: "YOUR_APP_ID"
+    messagingSenderId: "769372108757",
+    appId: "1:769372108757:android:1a36a5118e7d2dd730af5c"
   };
 
-  const app = initializeApp(firebaseConfig);
-  const db = getFirestore(app);
+  // Firebase Initialize
+  if (!firebase.apps.length) {
+    firebase.initializeApp(firebaseConfig);
+  }
+  const db = firebase.firestore();
 
-  // Profile save karne ka asli function
+  // Profile save karne ka asli function jo real database se account jorega
   window.saveProfileData = async function(name, email) {
+    if(!name || !email) {
+      alert("Name aur Email likhna zaroori hai!");
+      return;
+    }
     try {
-      await setDoc(doc(db, "users", email), {
+      await db.collection("users").doc(email).set({
         name: name,
         email: email,
-        timestamp: new Date()
+        timestamp: firebase.firestore.FieldValue.serverTimestamp()
       });
-      alert("Profile Database mein save ho gayi!");
+      alert("Real Account Database mein kamyabi se ban gaya!");
     } catch (e) {
+      alert("Database Error: " + e.message);
       console.error("Error: ", e);
     }
   }
