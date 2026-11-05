@@ -30,6 +30,9 @@
     profile = { name: window.JKR_USER ? window.JKR_USER.name : "", email: window.JKR_USER ? window.JKR_USER.email : "" };
   }
 
+  // Sidebar Account button was bound to the old demo dialog
+  const ab = $("accountBtn"); if (ab) ab.onclick = window.accountDialog;
+
   // Menu label + real sign out
   const si = document.querySelector('[data-action="account"]'); if (si) si.textContent = "👤 My Account";
   const so = document.querySelector('[data-action="signout"]');
