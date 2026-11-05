@@ -180,4 +180,7 @@ window.settingsDialog=function(){
   $('saveCfg').onclick=()=>{cfg={provider:$('provider').value,key:$('apiKey').value.trim(),model:$('modelName').value.trim(),imageModel:$('imageModel').value.trim(),isrc:$('isrc').value,vl:$('vl').value};store.set('cfg',cfg);closeModal();alert('Settings save ho gayin.')};
 };
 $('settingsBtn').onclick=window.settingsDialog;
+
+/* ---------- app shortcuts (?tab=chat|image|audio|documents) ---------- */
+try{const tb=new URLSearchParams(location.search).get('tab');if(tb&&document.getElementById(tb+'Pane'))setTab(tb)}catch(e){}
 })();
