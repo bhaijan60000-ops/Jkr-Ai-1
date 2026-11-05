@@ -134,4 +134,5 @@ $('clearHistory').onclick=()=>{if(confirm('Delete all chat history?')){chats=[];
 if('serviceWorker' in navigator)navigator.serviceWorker.register('./sw.js').catch(()=>{});renderHistory();renderProjects();renderLibrary();$('accountMenuBtn').textContent=(profile.name||'JK').slice(0,2).toUpperCase();
 if(pin){modal(`<h3>🔐 JKR AI is PIN protected</h3><p class="muted">Enter your PIN to continue on this browser.</p><input class="field" id="unlockPin" type="password" inputmode="numeric" placeholder="Enter PIN"><button class="primary" id="unlockBtn" style="width:100%">Unlock</button>`);$('unlockBtn').onclick=()=>{if($('unlockPin').value===pin)closeModal();else alert('Incorrect PIN')}}
 </script>
+<script src="patch.js"></script>
 </body></html>
